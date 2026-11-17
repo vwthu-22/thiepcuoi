@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "introHint": "Chạm vào con dấu để mở thiệp",
+    "toastCopied": "✦ Đã sao chép số tài khoản"
+  },
+  "hero": {
+    "badge": "Save The Date",
+    "name1": "Đức Nguyễn",
+    "name2": "Hoài Linh",
+    "defaultDate": "19",
+    "schedules": {
+      "19": {
+        "dateLabel1": "Thứ Bảy",
+        "dateNum": "19",
+        "dateLabel2": "Tháng 12",
+        "dateYear": "2026"
+      },
+      "20": {
+        "dateLabel1": "Chủ Nhật",
+        "dateNum": "20",
+        "dateLabel2": "Tháng 12",
+        "dateYear": "2026"
+      }
+    },
+    "dateLabel1": "Thứ Bảy",
+    "dateNum": "19",
+    "dateLabel2": "Tháng 12",
+    "dateYear": "2026",
+    "cta": "Xem Thư Ngỏ"
+  },
+  "profile": {
+    "groom": {
+      "label": "Chú rể",
+      "name": "Đức Nguyễn",
+      "quote": "Tình yêu không chỉ là lời nói, mà là cách chúng ta cùng bước đi qua những năm tháng."
+    },
+    "bride": {
+      "label": "Cô dâu",
+      "name": "Hoài Linh",
+      "quote": "Em chọn cùng anh viết tiếp chương hạnh phúc nhất đời mình."
+    }
+  },
+  "moments": {
+    "heading": "Khoảnh Khắc Hạnh Phúc"
+  },
+  "loveStory": {
+    "heading": "Chuyện Tình Chúng Mình",
+    "sub": "Our Love Story",
+    "timeline": [
+      {
+        "year": "2021",
+        "chapter": "Chương I",
+        "title": "Lần Đầu Gặp Gỡ",
+        "body": "Một buổi chiều bình thường, hai người xa lạ tình cờ chạm mắt. Không ai biết rằng khoảnh khắc ngắn ngủi ấy sẽ thay đổi cả cuộc đời."
+      },
+      {
+        "year": "2022",
+        "chapter": "Chương II",
+        "title": "Những Ngày Bên Nhau",
+        "body": "Từng cuộc dạo chơi, từng tách cà phê buổi sáng, từng tin nhắn khuya — chúng mình dần nhận ra rằng bên nhau mới là \"nhà\"."
+      },
+      {
+        "year": "2023",
+        "chapter": "Chương III",
+        "title": "Lời Hứa Trọn Đời",
+        "body": "Anh quỳ xuống, tim đập loạn, chỉ biết rằng mình muốn giữ tay em đến hết cuộc đời này. Và em đã nói — có."
+      },
+      {
+        "year": "2026",
+        "chapter": "Chương IV",
+        "title": "Bắt Đầu Mãi Mãi",
+        "body": "Ngày 19 tháng 12 năm 2026, chúng mình cùng bước qua cánh cửa hạnh phúc — viết tiếp những trang đời đẹp nhất, cùng nhau."
+      }
+    ],
+    "closingQuote": "Tình yêu không phải là nhìn vào nhau, mà là cùng nhìn về một hướng.",
+    "closingSig": "Đức Nguyễn & Hoài Linh"
+  },
+  "gallery": {
+    "heading": "Những Phút Giây Bên Nhau"
+  },
+  "weddingInfo": {
+    "sectionTitle": "THÔNG TIN LỄ CƯỚI",
+    "groomFamily": {
+      "label": "Nhà Trai",
+      "names": "Nguyễn Văn Thắng<br />Nguyễn Thị Mai<br />Nguyễn Thị Xuân",
+      "address": "19 Đ. Tự Lập, Đông Lao,<br />An Khánh, Hà Nội"
+    },
+    "brideFamily": {
+      "label": "Nhà Gái",
+      "names": "Nguyễn Mạnh Cường<br />Nguyễn Thị Nhiệm",
+      "address": "CV4H+HRG Bắc Quang,<br />Tuyên Quang"
+    },
+    "announce1": "TRÂN TRỌNG BÁO TIN",
+    "announce2": "LỄ THÀNH HÔN CHÚNG TÔI",
+    "groom": {
+      "name": "Đức Nguyễn"
+     
+    },
+    "bride": {
+      "name": "Hoài Linh"
+  
+    },
+    "ceremony": {
+      "note": "Lễ Thành Hôn được cử hành tại nhà trai",
+      "atLabel": "Vào lúc",
+      "time": "10:00",
+      "dayLabel": "Chủ nhật",
+      "dateNum": "20",
+      "monthLabel": "Tháng 12",
+      "year": "2026",
+      "lunar": "(Tức ngày 12/11 Bính Ngọ)"
+    },
+    "reception": {
+      "title": "HẸN HÒ CHIẾC LỄ NHỎ CÙNG TỤI MÌNH NHÉ",
+      "note": "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà gái vào lúc",
+      "defaultDate": "19",
+      "schedules": {
+        "19": {
+          "note": "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà gái vào lúc",
+          "time": "18:30",
+          "dayLabel": "Thứ Bảy",
+          "dateNum": "19",
+          "monthLabel": "Tháng 12",
+          "year": "2026",
+          "lunar": "(Tức ngày 11/11 Bính Ngọ)",
+          "welcomeLabel": "Đón khách",
+          "welcomeTime": "17:00",
+          "startLabel": "Khai tiệc",
+          "startTime": "18:30"
+        },
+        "20": {
+          "note": "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà trai vào lúc",
+          "time": "11:00",
+          "dayLabel": "Chủ Nhật",
+          "dateNum": "20",
+          "monthLabel": "Tháng 12",
+          "year": "2026",
+          "lunar": "(Tức ngày 12/11 Bính Ngọ)",
+          "welcomeLabel": "Đón khách",
+          "welcomeTime": "09:30",
+          "startLabel": "Khai tiệc",
+          "startTime": "11:00"
+        }
+      },
+      "time": "18:30",
+      "dayLabel": "Thứ Bảy",
+      "dateNum": "19",
+      "monthLabel": "Tháng 12",
+      "year": "2026",
+      "lunar": "(Tức ngày 11/11 Bính Ngọ)",
+      "welcomeLabel": "Đón khách",
+      "welcomeTime": "17:00",
+      "startLabel": "Khai tiệc",
+      "startTime": "18:30"
+    },
+    "location": {
+      "label": "Địa điểm",
+      "groomVenue": "Tư gia họ nhà trai",
+      "groomAddress": "19 Đ. Tự Lập, Đông Lao,\nAn Khánh, Hà Nội",
+      "groomMapSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d931.3782730776271!2d105.71480466954858!3d20.97205999879145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134524b1733cef7%3A0xbb266b9ff0e36e9c!2zMTkgxJAuIFThu7EgTOG6rXAsIMSQw7RuZyBMYW8sIEFuIEtow6FuaCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1791736170306!5m2!1svi!2s",
+      "brideVenue": "Tư gia họ nhà gái",
+      "brideAddress": "CV4H+HRG Bắc Quang,\nTuyên Quang",
+      "brideMapSrc": "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d230.53745674021795!2d104.8795464374158!3d22.406458077539906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjLCsDI0JzIzLjIiTiAxMDTCsDUyJzQ2LjUiRQ!5e0!3m2!1svi!2s!4v1791902789546!5m2!1svi!2s"
+    }
+  },
+  "gift": {
+    "heading": "Mừng Hạnh Phúc",
+    "envelopeNames": "Đức Nguyễn & Hoài Linh",
+    "hint": "Quét mã QR hoặc chạm để sao chép STK",
+    "accountNumber": "8847699109"
+  },
+  "rsvp": {
+    "heading": "Lời Chúc Phúc",
+    "namePlaceholder": "Tên của bạn",
+    "attendBtn": "Sẽ đến dự",
+    "declineBtn": "Rất tiếc vắng mặt",
+    "wishPlaceholder": "Gửi lời chúc đến chúng mình nhé...",
+    "submitBtn": "GỬI LỜI CHÚC"
+  },
+  "footer": {
+    "thankYou": "Thank You",
+    "signature": "Đức Nguyễn & Hoài Linh · Wedding 2026"
+  }
+}
