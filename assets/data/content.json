@@ -117,16 +117,16 @@
       "schedules": {
         "19": {
           "note": "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà gái vào lúc",
-          "time": "18:30",
+          "time": "10:30",
           "dayLabel": "Thứ Bảy",
           "dateNum": "19",
           "monthLabel": "Tháng 12",
           "year": "2026",
           "lunar": "(Tức ngày 11/11 Bính Ngọ)",
           "welcomeLabel": "Đón khách",
-          "welcomeTime": "17:00",
+          "welcomeTime": "09:30",
           "startLabel": "Khai tiệc",
-          "startTime": "18:30"
+          "startTime": "11:00"
         },
         "20": {
           "note": "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà trai vào lúc",
@@ -142,16 +142,16 @@
           "startTime": "11:00"
         }
       },
-      "time": "18:30",
+      "time": "10:30",
       "dayLabel": "Thứ Bảy",
       "dateNum": "19",
       "monthLabel": "Tháng 12",
       "year": "2026",
       "lunar": "(Tức ngày 11/11 Bính Ngọ)",
       "welcomeLabel": "Đón khách",
-      "welcomeTime": "17:00",
+      "welcomeTime": "09:30",
       "startLabel": "Khai tiệc",
-      "startTime": "18:30"
+      "startTime": "11:00"
     },
     "location": {
       "label": "Địa điểm",
