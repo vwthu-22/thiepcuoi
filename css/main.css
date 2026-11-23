@@ -650,6 +650,13 @@ body {
   }
 }
 
+@media (max-width: 640px) {
+  .profile-card .profile-text,
+  .profile-card.reverse .profile-text {
+    text-align: center;
+  }
+}
+
 .profile-name {
   font-family: "Great Vibes", cursive;
   color: var(--navy);
