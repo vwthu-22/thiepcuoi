@@ -32,12 +32,12 @@
     "groom": {
       "label": "Chú rể",
       "name": "Đức Nguyễn",
-      "quote": "Tình yêu không chỉ là lời nói, mà là cách chúng ta cùng bước đi qua những năm tháng."
+      "quote": "Tình yêu không chỉ là lời nói, mà là cách<br/> chúng ta cùng bước đi qua những năm tháng."
     },
     "bride": {
       "label": "Cô dâu",
       "name": "Hoài Linh",
-      "quote": "Em chọn cùng anh viết tiếp chương hạnh phúc nhất đời mình."
+      "quote": "Em chọn cùng anh viết tiếp chương<br/> hạnh phúc nhất đời mình."
     }
   },
   "moments": {
