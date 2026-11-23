@@ -129,11 +129,11 @@ function applyReceptionSchedule(dateKey) {
 
   setText("weddingInfo-reception-title", rec.title);
   const receptionNote = sched.note || (normalizedKey === "20"
-    ? "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà trai vào lúc"
-    : "Hãy dành chút thời gian đến chia sẻ niềm vui và dùng bữa cơm thân mật cùng gia đình chúng mình tại nhà gái vào lúc");
+    ? "Tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi tại nhà trai vào lúc"
+    : "Tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi tại nhà gái vào lúc");
   setText("weddingInfo-reception-note", receptionNote);
 
-  // Lễ Thành Hôn luôn được cử hành tại nhà trai
+  // Lễ Thành Hôn luôn cử hành tại nhà trai
   const ceremonyNote = (SITE_CONTENT.weddingInfo && SITE_CONTENT.weddingInfo.ceremony && SITE_CONTENT.weddingInfo.ceremony.note) || "Lễ Thành Hôn được cử hành tại nhà trai";
   setText("weddingInfo-ceremony-note", ceremonyNote);
 
@@ -167,11 +167,11 @@ function applyReceptionSchedule(dateKey) {
   setText("hero-dateLabel2", `${heroSched.dateLabel2}<br />${heroSched.dateYear}`);
 }
 
-let resolvedGuestName = "Người Thân";
+let resolvedGuestName = "Quý Khách";
 let resolvedGuestDate = "19";
 
 async function resolveGuestInfo() {
-  let guestName = "Người Thân";
+  let guestName = "Quý Khách";
   let targetDate = null;
 
   // 1. Kiểm tra tham số trên URL: ?to=... hoặc ?guest=... hoặc ?u=...
@@ -185,20 +185,12 @@ async function resolveGuestInfo() {
   // 2. Tải danh sách guests.json để tra cứu thông tin
   let guestsData = null;
   try {
-    let res = await fetch("/assets/data/guests.json?v=" + Date.now());
-    if (!res.ok) {
-      res = await fetch("./assets/data/guests.json?v=" + Date.now());
-    }
+    const res = await fetch("/assets/data/guests.json?v=" + Date.now());
     if (res.ok) {
       guestsData = await res.json();
     }
   } catch (err) {
-    try {
-      const res = await fetch("./assets/data/guests.json?v=" + Date.now());
-      if (res.ok) guestsData = await res.json();
-    } catch (e) {
-      console.warn("Không thể tải danh sách guests.json:", err);
-    }
+    console.warn("Không thể tải danh sách guests.json:", err);
   }
 
   // Hàm tra cứu khách từ guests.json theo slug hoặc tên
@@ -206,33 +198,43 @@ async function resolveGuestInfo() {
     if (!guestsData || !query) return null;
     const qClean = query.toLowerCase().replace(/[-_\s]+/g, "");
 
-    const group20 = guestsData.guestsDay20 || guestsData.day20 || guestsData["20"] || {};
-    const group19 = guestsData.guestsDay19 || guestsData.day19 || guestsData["19"] || {};
-
-    // Nếu trên URL có truyền ?date=19 hoặc ?date=20, ưu tiên nhóm ngày đó trước
-    const order = targetDate === "19" ? [
-      { grp: group19, date: "19", names: guestsData.namesDay19 },
-      { grp: group20, date: "20", names: guestsData.namesDay20 }
-    ] : [
-      { grp: group20, date: "20", names: guestsData.namesDay20 },
-      { grp: group19, date: "19", names: guestsData.namesDay19 }
-    ];
-
-    for (const item of order) {
-      if (item.grp) {
-        for (const k in item.grp) {
-          const val = item.grp[k];
-          const valName = typeof val === "object" ? (val.name || val.ten) : val;
-          if (k.toLowerCase().replace(/[-_\s]+/g, "") === qClean ||
+    // a. Kiểm tra nhóm guestsDay20 / day20 / "20"
+    const group20 = guestsData.guestsDay20 || guestsData.day20 || guestsData["20"];
+    if (group20) {
+      for (const k in group20) {
+        const val = group20[k];
+        const valName = typeof val === "object" ? (val.name || val.ten) : val;
+        if (k.toLowerCase().replace(/[-_\s]+/g, "") === qClean || 
             (valName && typeof valName === "string" && valName.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
-            return { name: valName || query, date: item.date };
-          }
+          return { name: valName || query, date: "20" };
         }
       }
-      if (Array.isArray(item.names)) {
-        if (item.names.some(n => n && n.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
-          return { name: query, date: item.date };
+    }
+
+    // b. Kiểm tra nhóm guestsDay19 / day19 / "19"
+    const group19 = guestsData.guestsDay19 || guestsData.day19 || guestsData["19"];
+    if (group19) {
+      for (const k in group19) {
+        const val = group19[k];
+        const valName = typeof val === "object" ? (val.name || val.ten) : val;
+        if (k.toLowerCase().replace(/[-_\s]+/g, "") === qClean || 
+            (valName && typeof valName === "string" && valName.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
+          return { name: valName || query, date: "19" };
         }
+      }
+    }
+
+    // c. Kiểm tra mảng namesDay20
+    if (Array.isArray(guestsData.namesDay20)) {
+      if (guestsData.namesDay20.some(n => n && n.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
+        return { name: query, date: "20" };
+      }
+    }
+
+    // d. Kiểm tra mảng namesDay19
+    if (Array.isArray(guestsData.namesDay19)) {
+      if (guestsData.namesDay19.some(n => n && n.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
+        return { name: query, date: "19" };
       }
     }
 
@@ -243,7 +245,7 @@ async function resolveGuestInfo() {
       const valName = typeof val === "object" ? (val.name || val.ten) : val;
       const valDate = typeof val === "object" ? String(val.date || val.ngay || "19") : null;
       if (k.toLowerCase().replace(/[-_\s]+/g, "") === qClean ||
-        (valName && typeof valName === "string" && valName.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
+          (valName && typeof valName === "string" && valName.toLowerCase().replace(/[-_\s]+/g, "") === qClean)) {
         return { name: valName || query, date: valDate || "19" };
       }
     }
@@ -300,16 +302,15 @@ async function resolveGuestInfo() {
 
   // Tự động điền tên vào ô gửi lời chúc nếu là khách mời cụ thể
   const rsvpNameInput = document.getElementById("rsvp-nameInput");
-  if (rsvpNameInput && guestName !== "Người Thân") {
+  if (rsvpNameInput && guestName !== "Quý Khách") {
     rsvpNameInput.value = guestName;
     rsvpNameInput.placeholder = guestName;
   }
 }
 
 function loadContent() {
-  const fetchContent = (url) => fetch(url + "?v=" + Date.now()).then((r) => r.ok ? r.json() : Promise.reject());
-  return fetchContent("/assets/data/content.json")
-    .catch(() => fetchContent("./assets/data/content.json"))
+  return fetch("/assets/data/content.json?v=" + Date.now())
+    .then((r) => r.json())
     .then((data) => {
       applyContent(data);
       resolveGuestInfo();
@@ -469,6 +470,44 @@ const sparkObs = new IntersectionObserver(
 document
   .querySelectorAll(".gallery-item")
   .forEach((el) => sparkObs.observe(el));
+
+const bills = [
+  { bg: "#2ecc71", text: "500K" },
+  { bg: "#27ae60", text: "200K" },
+  { bg: "#f1c40f", text: "100K" },
+  { bg: "#2980b9", text: "50K" },
+  { bg: "#16a085", text: "500K" },
+];
+function spawnMoney(cid) {
+  const c = document.getElementById(cid);
+  if (!c) return;
+  const bill = document.createElement("div");
+  bill.className = "money-bill";
+  const b = bills[Math.floor(Math.random() * bills.length)];
+  bill.style.background = b.bg;
+  bill.textContent = b.text;
+  const drift = (Math.random() - 0.5) * 140,
+    spin = (Math.random() - 0.5) * 360,
+    delay = Math.random() * 1.2,
+    dur = 1.6 + Math.random() * 1.2;
+  bill.style.setProperty("--drift", drift + "px");
+  bill.style.setProperty("--spin", spin + "deg");
+  bill.style.animationDuration = dur + "s";
+  bill.style.animationDelay = delay + "s";
+  c.appendChild(bill);
+  setTimeout(() => bill.remove(), (dur + delay) * 1000 + 200);
+}
+setInterval(() => spawnMoney("money-main"), 900);
+document.querySelectorAll(".lixi-wrapper").forEach((el) => {
+  let fi = null;
+  el.addEventListener("mouseenter", () => {
+    fi = setInterval(() => spawnMoney("money-main"), 100);
+  });
+  el.addEventListener("mouseleave", () => {
+    clearInterval(fi);
+    fi = null;
+  });
+});
 
 function copyToClipboard(text, name) {
   navigator.clipboard.writeText(text).catch(() => {
@@ -674,7 +713,7 @@ setInterval(createBubble, 140);
     messagingSenderId: "360617041174",
     measurementId: "G-NSW2TBQFXN",
   };
-
+  
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
@@ -696,19 +735,19 @@ setInterval(createBubble, 140);
 
   // Hiển thị bong bóng ban đầu từ file (backup)
   // Đã bỏ fetch wish.json để ép trình duyệt xoá sạch lời chúc cũ bị lưu trong bộ nhớ đệm (cache)
-  setTimeout(spawn, 1500);
+  setTimeout(spawn, 1500); 
   setInterval(spawn, SHOW_INTERVAL);
 
   // --- LOGIC FORM RSVP ---
   let isAttending = null; // null: chưa chọn, true: tham gia, false: từ chối
-
+  
   const attendBtn = document.getElementById("rsvp-attendBtn");
   const declineBtn = document.getElementById("rsvp-declineBtn");
   const nameInput = document.getElementById("rsvp-nameInput");
   const wishInput = document.getElementById("rsvp-wishInput");
   const submitBtn = document.getElementById("rsvp-submitBtn");
-
-  if (attendBtn && declineBtn) {
+  
+  if(attendBtn && declineBtn) {
     attendBtn.addEventListener("click", () => {
       isAttending = true;
       attendBtn.style.background = "var(--navy)";
@@ -716,7 +755,7 @@ setInterval(createBubble, 140);
       declineBtn.style.background = "transparent";
       declineBtn.style.color = "var(--navy)";
     });
-
+    
     declineBtn.addEventListener("click", () => {
       isAttending = false;
       declineBtn.style.background = "var(--navy)";
@@ -725,20 +764,20 @@ setInterval(createBubble, 140);
       attendBtn.style.color = "var(--navy)";
     });
   }
-
+  
   if (submitBtn) {
     submitBtn.addEventListener("click", async () => {
       const name = nameInput.value.trim();
       const wish = wishInput.value.trim();
-
+      
       if (!name) {
         alert("Vui lòng nhập tên của bạn nhé!");
         return;
       }
-
+      
       submitBtn.textContent = "ĐANG GỬI...";
       submitBtn.disabled = true;
-
+      
       try {
         await db.collection("rsvp").add({
           name: name,
@@ -749,7 +788,7 @@ setInterval(createBubble, 140);
 
         // Gửi email báo hiệu có lời chúc mới qua Web3Forms
         const emailData = {
-          access_key: "f0a0de58-04ad-4874-866d-2227de069a46",
+          access_key: "f0a0de58-04ad-4874-866d-2227de069a46", 
           subject: `💌 Thiệp Cưới: Lời chúc mới từ ${name}`,
           from_name: "Thiệp Cưới",
           Khách_Mời: name,
@@ -758,13 +797,13 @@ setInterval(createBubble, 140);
         };
 
         fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(emailData)
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(emailData)
         }).catch(err => console.log("Lỗi gửi mail:", err));
 
         alert("Cảm ơn bạn đã gửi lời chúc!");
-        nameInput.value = (resolvedGuestName && resolvedGuestName !== "Người Thân") ? resolvedGuestName : "";
+        nameInput.value = (resolvedGuestName && resolvedGuestName !== "Quý Khách") ? resolvedGuestName : "";
         wishInput.value = "";
         isAttending = null;
         attendBtn.style.background = "transparent";
@@ -797,7 +836,7 @@ setInterval(createBubble, 140);
     const unlockSound = document.getElementById("unlock-sound");
     if (unlockSound) {
       unlockSound.currentTime = 0;
-      unlockSound.play().catch(() => { });
+      unlockSound.play().catch(() => {});
     }
 
     // Bật nhạc nền ngay khi phong bì mở ra
@@ -805,7 +844,7 @@ setInterval(createBubble, 140);
       const audio = document.getElementById("bg-music");
       if (audio) {
         audio.currentTime = 0;
-        audio.play().catch(() => { });
+        audio.play().catch(() => {});
       }
     }, 400);
 
